@@ -1,0 +1,58 @@
+#login to the database
+
+POST https://tranquil-mountain-18084.herokuapp.com/auth/token/login
+content-type: application/json
+
+{
+  "email":"jamesbbbnm@gmail.com",
+  "password":"mjuTjYxtPRdw2GeZ"
+}
+
+
+###get all users
+
+GET https://tranquil-mountain-18084.herokuapp.com/auth/users/
+Authorization: token 4422d65352545ed1d5987087bb0fd0ccbe16bcf7
+
+
+###create user account
+
+POST  https://tranquil-mountain-18084.herokuapp.com/auth/users/
+content-type: application/json
+
+{
+    "first_name":"Johnm",
+    "type":"RestaurantOwner",
+    "last_name":"Kalembme",
+    "phone":"0704157039",
+    "email":"jamesbbbnm@gmail.com",
+    "username":"JamenbsUleMseme",
+    "password":"mjuTjYxtPRdw2GeZ",
+    "re_password":"mjuTjYxtPRdw2GeZ"
+}
+
+
+###current user
+
+GET http://127.0.0.1:8000/auth/users/me
+Authorization: token cfe624579500078d269043aed6bf40d1cbdcf861
+
+
+###check restricted user
+
+GET http://127.0.0.1:8000/auth/restricted/
+Authorization: token d30ee560c7206e1491f0a82964e41333eaa95576
+
+
+### logut
+GET http://127.0.0.1:8000/auth/restricted/
+Authorization: token 4422d65352545ed1d5987087bb0fd0ccbe16bcf7
+
+
+
+
+
+
+
+
+
