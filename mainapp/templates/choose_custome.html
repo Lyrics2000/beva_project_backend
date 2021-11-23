@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+{% comment %} {% include './index_home_file/switch_color.html' %} {% endcomment %}
+
+<div class="wrapper wizard d-flex clearfix multisteps-form position-relative">
+
+{% include './index_home_file/step2_position.html' %}
+
+<form class="multisteps-form__form w-75 "  method="POST"  action="{% url 'mainapp:choose_custome' %}" enctype="multipart/form-data">
+{% csrf_token %}
+    <div class="form-area position-relative">
+
+
+    {% include './index_home_file/div5.html' %} 
+
+    </div>
+</form>
+
+
+
+</div>
+
+{% include 'js.html' %}
+
+<body>

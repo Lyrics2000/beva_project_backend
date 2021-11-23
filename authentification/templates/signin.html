@@ -1,0 +1,83 @@
+{% extends 'dashboard/auth/auth_base.html' %}
+{% load static %}
+{% block content %}
+ <div class="auth-page">
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-xxl-3 col-lg-4 col-md-5">
+                        <div class="auth-full-page-content d-flex p-sm-5 p-4">
+                            <div class="w-100">
+                                <div class="d-flex flex-column h-100">
+                                    <div class="mb-4 mb-md-5 text-center">
+                                        <a href="index.html" class="d-block auth-logo">
+                                            <img src="{% static '/dashboard/assets/images/logo-sm.svg' %}" alt="" height="28"> <span class="logo-txt">Bevs</span>
+                                        </a>
+                                    </div>
+                                    <div class="auth-content my-auto">
+                                        <div class="text-center">
+                                            <h5 class="mb-0">Welcome Back !</h5>
+                                            <p class="text-muted mt-2">Sign in to continue to Bevs.</p>
+                                        </div>
+
+                                        {% comment %} messages {% endcomment %}
+                                        {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                <li{% if message.tags %} class="{{ message.tags }} alert alert-danger "{% endif %}>{{ message }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+
+                                        {% comment %} messages {% endcomment %}
+                                        <form class="mt-4 pt-2" method="POST" action="{% url 'authentification:login' %}">
+                                        {% csrf_token %}
+                                            <div class="form-floating form-floating-custom mb-4">
+                                                {{login.username}}
+                                                <label for="input-username">Email</label>
+                                                <div class="form-floating-icon">
+                                                   <i data-feather="users"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                                                {{login.password}}
+                                                <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0" id="password-addon">
+                                                    <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                                                </button>
+                                                <label for="input-password">Password</label>
+                                                <div class="form-floating-icon">
+                                                    <i data-feather="lock"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Log In</button>
+                                            </div>
+                                        </form>
+
+                                     
+                                        <div class="mt-5 text-center">
+                                            <p class="text-muted mb-0">Don't have an account ? <a href="{% url 'authentification:sign_up' %}"
+                                                    class="text-primary fw-semibold"> Signup now </a> </p>
+                                        </div>
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end auth full page content -->
+                    </div>
+                    <!-- end col -->
+                    {% include 'auth_common.html' %}
+                   
+
+
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container fluid -->
+        </div>
+
+
+{% endblock content %}

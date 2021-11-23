@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+{% comment %} {% include './index_home_file/switch_color.html' %} {% endcomment %}
+
+<div class="wrapper wizard d-flex clearfix multisteps-form position-relative">
+
+{% include './index_home_file/step2_position.html' %}
+
+<form class="multisteps-form__form w-75 "  method="POST"  action="{% url 'mainapp:student_department' %}" enctype="multipart/form-data">
+{% csrf_token %}
+    <div class="form-area position-relative">
+
+    {% comment %} {% include './index_home_file/div1.html' %} {% endcomment %}
+{% include './index_home_file/div2.html' %}
+    {% comment %} {% include './index_home_file/div3.html' %} 
+    {% include './index_home_file/divs4.html' %}
+    {% include './index_home_file/div5.html' %} {% endcomment %}
+
+    </div>
+</form>
+
+
+
+</div>
+
+{% include 'js.html' %}
+
+<body>

@@ -53,7 +53,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR/'mainapp/templates'),
+        os.path.join(BASE_DIR/'templates'),
+        os.path.join(BASE_DIR/'authentification/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -147,15 +149,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# development
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static_file'),
+]
 
 STATIC_ROOT = os.path.join('static_cdn')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join('media_cdn')
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'thomasambetsa@gmail.com'
+EMAIL_HOST_PASSWORD = 'wojjleviqxakkazs'
+EMAIL_PORT = 587

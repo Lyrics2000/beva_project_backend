@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>PopUp 2</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'mkka/assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'mkka/assets/css/fontawesome-all.css' %}">
+	<link rel="stylesheet" href="{% static 'mkka/assets/css/style.css' %}">
+</head>
+<body>
+
+ <!-- Start of popup section
+ 	============================================= -->
+ 	<section id="popup-one" class="popup-one-section">
+ 		<div class="container">
+ 			<div class="popup-wrapper popup-wrapper-style-two">
+ 				<div class="popup-close text-center">x</div>
+ 				<div class="popup-text text-center">
+ 					<div class="thanks-icon">
+ 						<i class="fas fa-check"></i>
+ 					</div>
+ 					<div class="thanks-text">
+ 						<h1 class="text-uppercase">Thankyou</h1>
+ 						<p>Thank you for your submission , Your submission is under review</p>
+ 						<a class="d-block text-center text-uppercase" href="{% url 'mainapp:student' %}">Go to Home</a>
+ 					</div>
+ 				</div>
+ 			
+ 			</div>
+ 		</div>
+ 	</section>
+ <!-- End of popup section
+ 	============================================= -->
+
+ 	<script src="{% static 'mmka/assets/js/jquery-3.3.1.min.js' %}"></script>
+ 	<script src="{% static 'mkka/assets/js/bootstrap.min.js' %}"></script>
+ 	<script src="{% static 'mkka/assets/js/main.js' %}"></script>
+ </body>
+ </html>

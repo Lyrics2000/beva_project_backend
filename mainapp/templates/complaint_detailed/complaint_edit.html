@@ -1,0 +1,90 @@
+{% load static %}
+<div class="card">
+                                  
+                                    <div class="card-body p-4">
+                                        
+                                        <div class="row">
+                                            
+                                            <div class="col-lg-12 ms-lg-auto">
+                                                <div class="mt-4 mt-lg-0">
+                                                    
+                                                    <form method="POST"  action="{{props.get_absolute_url_edit}}" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">Name</label>
+                                                            <div class="col-sm-9">
+                                                              <input type="text" class="form-control" id="horizontal-firstname-input" name="name" value="{{props.name}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-email-input" class="col-sm-3 col-form-label">Email</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="email" name="email" class="form-control" id="horizontal-email-input" value="{{props.email}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-password-input" class="col-sm-3 col-form-label">University</label>
+                                                            <div class="col-sm-9">
+                                                              <input type="text" name="university" class="form-control" id="horizontal-email-input" value="{{props.university}}">
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-password-input" class="col-sm-3 col-form-label">Course</label>
+                                                            <div class="col-sm-9">
+                                                              <input type="text" name="course" class="form-control" id="horizontal-email-input" value="{{props.course}}">
+                                                            </div>
+                                                        </div>
+
+
+                                                         <div class="row mb-4">
+                                                            <label for="horizontal-password-input" class="col-sm-3 col-form-label">Reg No</label>
+                                                            <div class="col-sm-9">
+                                                              <input type="text" name="reg_no" class="form-control" id="horizontal-email-input" value="{{props.reg_no}}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-password-input" class="col-sm-3 col-form-label">Department</label>
+                                                            <div class="col-sm-9">
+                                                              <input type="text" name="department" class="form-control" id="horizontal-email-input" value="{{props.department}}">
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-password-input" class="col-sm-3 col-form-label">Complaint</label>
+                                                            <div class="col-sm-9">
+                                                              <input type="text" name="complaint" class="form-control" id="horizontal-email-input" value="{{props.complaint}}">
+                                                            </div>
+                                                        </div>
+
+
+                                                          <div class="row mb-4">
+                                                            <label for="horizontal-password-input" class="col-sm-3 col-form-label">File Upload</label>
+                                                            <div class="col-sm-9">
+                                                              <input type="file" name="file_upload" class="form-control" id="horizontal-email-input" value="{{props.file.url}}">
+                                                            </div>
+                                                        </div>
+            
+            
+                                                        <div class="row justify-content-end">
+                                                            <div class="col-sm-9">
+                                                               
+            
+                                                                <div>
+                                                                    <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                      
+                                    </div>
+                                </div>

@@ -1,0 +1,46 @@
+{% load static %}
+  <!-- div 3 -->
+                <div class="multisteps-form__panel js-active" data-animation="slideHorz">
+                    <div class="wizard-forms">
+                        <div class="inner pb-100 clearfix">
+                            <div class="wizard-title text-center">
+                                 <h3>Please, enter your inquiry </h3>
+                                <p> Please upload a file (optional).</p>
+                            </div>
+
+                              {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                <li{% if message.tags %} class="{{ message.tags }} alert alert-success "{% endif %}>{{ message }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                        
+                            <div class="wizard-document-upload pb-200">
+                                <span class="wizard-sub-text">Upload the documents</span>
+                                <div class="custom-file">
+                                    <input name="browse_files" type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">jpg or .pdf should  be more than 500KB or 300PI</label>
+                                </div>
+                            </div>
+                            <div class="wizard-v3-progress">
+                                <span>3 to 5 step</span>
+                                <h3>59% to complete</h3>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 59%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./inner -->
+                        <div class="vector-img-one">
+                            <img src="{% static 'assets/img/vb3.png' %}" alt="">
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li><span class="js-btn-prev" title="BACK"><i class="fa fa-arrow-left"></i> BACK </span></li>
+                                <li><button type="submit" class="js-btn-next" title="NEXT">SUBMIT <i class="fa fa-arrow-right"></i></button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>

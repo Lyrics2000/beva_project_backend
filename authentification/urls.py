@@ -1,11 +1,10 @@
 from django.urls import path,include
-from .views import restricted
+from .views import login_app,signup_view,activate_account
 
-
+app_name = "authentification"
 urlpatterns = [
-    path('',include('djoser.urls')),
-    path('',include('djoser.urls.authtoken')),
-    path('restricted/',restricted)
-
-
+    path('',login_app,name="login"),
+    path('signup/',signup_view,name="sign_up"),
+    path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        activate_account, name='activate')
 ]

@@ -1,0 +1,63 @@
+{% load static %}
+<!-- div 5 -->
+                <div class="multisteps-form__panel js-active" data-animation="slideHorz">
+                    <div class="wizard-forms">
+                        <div class="inner pb-100">
+                            <div class="wizard-title text-center">
+                                 <h3>Please, enter your inquiry </h3>
+                                <p> we would like to hear from you.</p>
+                            </div>
+                             {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                <li{% if message.tags %} class="{{ message.tags }} alert alert-success "{% endif %}>{{ message }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                            <div class="wizard-day-item">
+                                <span class="wizard-sub-text">Confirmation Service Via</span>
+                                <div class="wizard-checkbox-option">
+                                    <ul>
+                                        <li>
+                                            <label class="block-option">
+                                                <input type="checkbox" name="send_sms" class="checked-checkbox">
+                                                <span class="checkbox-tick"></span>
+                                                <span class="day-label">Sms</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="block-option">
+                                                <input type="checkbox" name="send_email" class="checked-checkbox" checked>
+                                                <span class="checkbox-tick"></span>
+                                                <span class="day-label">Email Address</span>
+                                            </label>
+                                        </li>
+                                    
+                                    </ul>
+                                </div>
+                            </div>
+                             <div class="wizard-form-input mb-60 mt-60">
+                                <div class="line line2"></div>
+                            </div>
+                           
+                            <div class="wizard-v3-progress">
+                                <span>5 to 5 step</span>
+                                <h3>100% to complete</h3>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.inner -->
+                        <div class="vector-img-one position-relative">
+                            <img src="{% static 'assets/img/vb5.png' %}" alt="">
+                        </div>
+                        <div class="actions mt-60">
+                            <ul>
+                                <li><span class="js-btn-prev" title="BACK"><i class="fa fa-arrow-left"></i> BACK </span></li>
+                               <li><button type="submit" class="js-btn-next" title="NEXT">SUBMIT <i class="fa fa-arrow-right"></i></button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>

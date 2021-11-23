@@ -2,6 +2,7 @@ from django.db import models
 import random
 import os
 from authentification.models import User
+from django.shortcuts import reverse
 
 # # Create your models here.
 
@@ -48,6 +49,40 @@ class Response(BaseModel):
 
     def __str__(self):
         return str(self.feedback_id)
+
+
+
+class ComplaintsDetails(models.Model):
+    user_id =  models.ForeignKey(User,on_delete=models.CASCADE)
+    name =  models.CharField(max_length=255,blank=True,null=True)
+    profile_image = models.ImageField(upload_to=upload_image_path,blank=True,null = True)
+    email =  models.EmailField(blank=True,null=True)
+    university =  models.CharField(max_length=255,blank=True,null=True)
+    course =  models.CharField(max_length=255,blank=True,null=True)
+    reg_no =  models.CharField(max_length=255,blank=True,null=True)
+    department =  models.CharField(max_length=255,blank=True,null=True)
+    complaint =  models.TextField(blank=True,null=True)
+    file =  models.FileField(upload_to = upload_image_path,blank=True,null=True)
+    send_sms =  models.BooleanField(default=False,blank=True,null=True)
+    send_email =  models.BooleanField(default=False,blank=True,null=True)
+    submitted = models.BooleanField(default=False)
+    reviewed =  models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("mainapp:post_detailed", kwargs={
+            'id': self.id
+        })
+        
+    def get_absolute_url_edit(self):
+        return reverse("mainapp:post_edit", kwargs={
+            'id': self.id
+        })
+
+
+
 
 
 

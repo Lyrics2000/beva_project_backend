@@ -1,0 +1,55 @@
+{% load static %}
+  <!-- div 2 -->
+                <div class="multisteps-form__panel js-active" data-animation="slideHorz">
+                    <div class="wizard-forms section-padding">
+                        <div class="inner pb-100 clearfix">
+                            <div class="wizard-title text-center">
+                             <h3>Please, enter your inquiry </h3>
+                                <p> we would like to hear from you.</p>
+                                
+                                </div>
+                              {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                <li{% if message.tags %} class="{{ message.tags }} alert alert-success "{% endif %}>{{ message }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                            
+                            <div class="wizard-note-subject pb-100">
+                                <div class="wizard-form-input select-option-area">
+                                    <label>Select Deparment</label>
+                                    <select name="select_department">
+                                        <option>Academic</option>
+                                        <option>Registra</option>
+                                        <option>Entertainment</option>
+                                        <option>Finance</option>
+                                    </select>
+                                </div>
+                                <div class="wizard-form-input">
+                                    <label>Write Complaint</label>
+                                    <textarea name="complaints"></textarea>
+                                </div>
+                              
+                            </div>
+                            <div class="wizard-v3-progress">
+                                <span>2 to 5 step</span>
+                                <h3>38% to complete</h3>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 38%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.inner -->
+                        <div class="vector-img-one">
+                            <img src="{% static 'assets/img/vb2.png' %}" alt="">
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li><a href="{% url 'mainapp:index' %}" class="js-btn-prev" title="BACK"><i class="fa fa-arrow-left"></i> BACK </a></li>
+                                <li><button type="submit" class="js-btn-next" title="NEXT">SUBMIT <i class="fa fa-arrow-right"></i></button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>

@@ -1,0 +1,94 @@
+{% load static %}
+<!-- div 1 -->
+                <div class="multisteps-form__panel js-active" data-animation="slideHorz">
+                    <div class="wizard-forms">
+                        <div class="inner pb-100 clearfix">
+                            <div class="wizard-title text-center">
+                                <h3>Please, enter your inquiry </h3>
+                                <p> we would like to hear from you.</p>
+                            </div>
+                             {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                <li{% if message.tags %} class="{{ message.tags }} alert alert-success "{% endif %}>{{ message }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                            <div class="wizard-photo-area">
+                                <div class="wizard-photo-upload position-relative">
+                                    <label for="files">Upload Image</label>
+                                    <input name="profile_image" id="files" type='file'  style="display: none;">
+                                    <div class="display-img text-center">
+                                        <img id="profile-image" src="{% static 'assets/img/pf1.png' %}" alt="your image" />
+                                    </div>
+                                </div>
+                                <div class="photo-upload-text">has been a while. I would like to present you the project I work on a few
+                                </div>
+                            </div>
+                            <div class="wizard-form-field mb-85">
+                                <div class="wizard-form-input">
+                                    <label>Name</label>
+                                    <input type="text" name="name">
+                                </div>
+                                <div class="wizard-form-input">
+                                    <label>Email</label>
+                                    <input type="email" name="email">
+                                </div>
+                                <div class="wizard-form-input mb-60 mt-60">
+                                    <div class="line"></div>
+                                </div>
+                                <div class="wizard-form-input">
+                                    <label>What are you?</label>
+                                    <div class="wizard-checked">
+                                        <label class="checkbox-circle">
+                                            <input type="radio" checked="checked" name="student_type" value="University Student">
+                                            <span class="checkmark"></span>
+                                            University Student
+                                        </label>
+                                    </div>
+                                    <div class="wizard-checked">
+                                        <label class="checkbox-circle">
+                                            <input type="radio" name="student_type" value="Professional">
+                                            <span class="checkmark"></span>
+                                            Others
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="wizard-form-input">
+                                    <label>University</label>
+                                    <input type="text" name="university">
+                                </div>
+                                <div class="wizard-form-input">
+                                    <label>Course</label>
+                                    <input type="text" name="course">
+                                </div>
+                                <div class="wizard-form-input">
+                                    <label>Reg No:</label>
+                                    <input type="text" name="reg_no" placeholder = "optional..">
+                                </div>
+                                <div class="wizard-form-input mb-60 mt-60">
+                                    <div class="line"></div>
+                                </div>
+                               
+                                
+                            </div>
+                            <div class="wizard-v3-progress">
+                                <span>1 to 5 step</span>
+                                <h3>0% to complete</h3>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 0%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.inner -->
+                        <div class="vector-img-one">
+                            <img src="assets/img/vb1.png" alt="">
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li><button class="js-btn-next" title="NEXT">SUBMIT <i class="fa fa-arrow-right"></i></button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
