@@ -163,10 +163,12 @@ def home_student(request):
     total_complaints = ComplaintsDetails.objects.filter(user_id= user_obj).count()
     total_responded = ComplaintsDetails.objects.filter(user_id= user_obj,reviewed=True).count()
     total_unresponded =  total_complaints - total_responded
+    follow_ups =  FollowUpEmailss.objects.filter(user_id = user_obj).count()
     context = {
         'total_complaints':total_complaints,
         'total_responded' : total_responded,
-        'total_unresponded' :total_unresponded
+        'total_unresponded' :total_unresponded,
+        'total_follow_up' : follow_ups
     }
     return render(request,'home_student.html',context)
 
