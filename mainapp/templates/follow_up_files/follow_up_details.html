@@ -1,0 +1,94 @@
+{% load static %}
+    <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Read Email</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Email</a></li>
+                                            <li class="breadcrumb-item active">Read Email</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Left sidebar -->
+                                <div class="email-leftbar card">
+                                    <button type="button" class="btn btn-danger btn-block waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#composemodal">
+                                        Compose
+                                    </button>
+                                    <div class="mail-list mt-4">
+                                        <a href="javascript: void(0);" class="active"><i class="mdi mdi-email-outline me-2"></i> Inbox <span class="ms-1 float-end"></span></a>
+                               
+                                    </div>
+
+
+                                </div>
+                                <!-- End Left sidebar -->
+
+                                <!-- Right Sidebar -->
+                                <div class="email-rightbar mb-3">
+
+                                    <div class="card">
+                                      
+
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-4">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <img class="rounded-circle avatar-sm" src="{% static '/dashboard/assets/images/users/avatar-2.jpg' %}" alt="Generic placeholder image">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                {% if user_to %}
+                                                    <h5 class="font-size-14 mb-0">{{user_to.username}}</h5>
+                                                    <h6 class="font-size-14 mb-0">{{user_to.department}}</h6>
+                                                    <small class="text-muted">{{user_to.email}}</small>
+                                                    
+                                                {% endif %}
+                                                </div>
+                                            </div>
+
+                                            <h4 class="font-size-16">{{props.subject}}</h4>
+
+                                            <p>{{props.message}}</p>
+                                           
+
+                                           
+
+                                            {% comment %} <a href="javascript: void(0);" class="btn btn-secondary waves-effect mt-4"><i class="mdi mdi-reply me-1"></i> Reply</a>
+                                         {% endcomment %}
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- card -->
+
+                            </div>
+                            <!-- end Col -->
+
+                        </div>
+                        <!-- end row -->
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                  {% include './modal.html' %}
+
+             
+            </div>
+            <!-- end main content-->

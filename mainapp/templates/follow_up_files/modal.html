@@ -1,0 +1,45 @@
+  <!-- Modal -->
+                <div class="modal fade" id="composemodal" tabindex="-1" role="dialog" aria-labelledby="composemodalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+
+                        <form method = "POST" action ="{% url 'mainapp:follow_up' %}" >
+                        {% csrf_token %}
+                            <div class="modal-header">
+                                <h5 class="modal-title font-size-16" id="composemodalTitle">New Message</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <div class="mb-3">
+                                        
+                                        <select name="to" class="form-control" id="cars">
+                                        {% if all_users %}
+                                        {% for all_u in all_users %}
+                                            <option value="{{all_u.email}}">{{all_u.department}}</option>
+                                           
+                                        {% endfor %}
+                                        {% endif %}
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input name="subject" type="text" class="form-control" placeholder="Subject">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input name="message" type="text" class="form-control" placeholder="Message">
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Send <i class="fab fa-telegram-plane ms-1"></i></button>
+                            </div>
+
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal -->

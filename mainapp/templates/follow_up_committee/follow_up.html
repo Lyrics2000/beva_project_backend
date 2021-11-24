@@ -59,10 +59,10 @@
                                                         <input type="checkbox" id="chk19">
                                                         <label for="chk19" class="toggle"></label>
                                                     </div>
-                                                    <a href="{{d.get_absolute_url_edit}}" class="title">{{d.to_email}}</a><span class="star-toggle far fa-star"></span>
+                                                    <a href="{{d.email_details_committee}}" class="title">{{d.user_id.email}}</a><span class="star-toggle far fa-star"></span>
                                                 </div>
                                                 <div class="col-mail col-mail-2">
-                                                    <a href="{{d.get_absolute_url_edit}}" class="subject">Hello – <span class="teaser">{{d.subject}}</span>
+                                                    <a href="{{d.email_details_committee}}" class="subject">Hello – <span class="teaser">{{d.subject}}</span>
                                                     </a>
                                                     <div class="date">{{d.created_at.day}}/{{d.created_at.month}}/{{d.created_at.year}}</div>
                                                 </div>
@@ -71,6 +71,30 @@
                                         {% endfor %}
 
                                         {% endif %}
+
+
+                                           {% if flow %}
+                                        {% for f in flow %}
+                                            <li>
+                                                <div class="col-mail col-mail-1">
+                                                    <div class="checkbox-wrapper-mail">
+                                                        <input type="checkbox" id="chk19">
+                                                        <label for="chk19" class="toggle"></label>
+                                                    </div>
+                                                    <a href="{{f.email_details_committee}}" class="title">{{f.user_id.email}}</a><span class="star-toggle far fa-star"></span>
+                                                </div>
+                                                <div class="col-mail col-mail-2">
+                                                    <a href="{{f.email_details_committee}}" class="subject">Hello – <span class="teaser">{{f.subject}}</span>
+                                                    </a>
+                                                    <div class="date">{{f.created_at.day}}/{{f.created_at.month}}/{{f.created_at.year}}</div>
+                                                </div>
+                                            </li>
+
+                                        {% endfor %}
+
+                                        {% endif %}
+                
+                                      
                 
                                       
                                         </ul>

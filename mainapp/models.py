@@ -75,11 +75,59 @@ class ComplaintsDetails(models.Model):
         return reverse("mainapp:post_detailed", kwargs={
             'id': self.id
         })
+
+    def get_absolute_url_committee(self):
+        return reverse("mainapp:comp_detailed", kwargs={
+            'id': self.id
+        })
+
+        
         
     def get_absolute_url_edit(self):
         return reverse("mainapp:post_edit", kwargs={
             'id': self.id
         })
+        
+
+    def get_absolute_url_edit_review(self):
+        return reverse("mainapp:review_edit", kwargs={
+            'id': self.id
+        })
+
+
+class BaseModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+class FollowUpEmailss(BaseModel):
+    user_id =  models.ForeignKey(User,on_delete=models.CASCADE)
+    to_email =  models.EmailField()
+    subject = models.CharField(max_length=255)
+    message =  models.TextField()
+    created_at =  models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.subject
+
+    def get_absolute_url_edit(self):
+        return reverse("mainapp:email_details", kwargs={
+            'id': self.id
+        })
+
+    def get_reply(self):
+        return reverse("mainapp:email_details", kwargs={
+            'id': self.id
+        })
+
+    def email_details_committee(self):
+        return reverse("mainapp:email_details_committee", kwargs={
+            'id': self.id
+        })
+
+    
 
 
 

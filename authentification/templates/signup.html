@@ -76,10 +76,12 @@
                                             </div>
 
                                             <div class="form-floating form-floating-custom mb-4">
-                                               {{form.type}}
-                                                <div class="invalid-feedback">
-                                                    Please Enter User Type
-                                                </div> 
+                                               <select name="type" class="form-control" id="cars">
+                                                    <option value="Student">Student</option>
+                                                    <option value="Committee">Committee</option>
+                                                   
+                                                </select>
+                                              
                                                 <label for="input-password">User Type</label>
                                                 <div class="form-floating-icon">
                                                     <i data-feather="lock"></i>
@@ -87,10 +89,19 @@
                                             </div>
 
                                              <div class="form-floating form-floating-custom mb-4">
-                                               {{form.department}}
-                                                <div class="invalid-feedback">
-                                                    Please Enter User Department
-                                                </div> 
+                                               <select name="department" class="form-control" id="cars">
+                                                    <option value="Student">Student</option>
+                                                    <option value="Academic">Academic</option>
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="Accomodation">Accomodation</option>
+                                                    <option value="Health">Health</option>
+                                                    <option value="Catering">Catering</option>
+                                                    <option value="Environment">Environment</option>
+                                                    <option value="Student's Welfare">Student's Welfare</option>
+                                                    <option value="Entertainment">Entertainment</option>
+                                                   
+                                                </select>
+                                                
                                                 <label for="input-password">User Department</label>
                                                 <div class="form-floating-icon">
                                                     <i data-feather="lock"></i>

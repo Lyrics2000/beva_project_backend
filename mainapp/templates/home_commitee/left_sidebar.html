@@ -11,32 +11,31 @@
                             <li class="menu-title" data-key="t-menu">Menu</li>
 
                             <li>
-                                <a href="{% url 'mainapp:student' %}">
+                                <a href="{% url 'mainapp:committee' %}">
                                     <i data-feather="home"></i>
                                     <span class="badge rounded-pill bg-soft-success text-success float-end"></span>
                                     <span data-key="t-dashboard">Dashboard</span>
                                 </a>
                             </li>
 
-                            <li class="menu-title" data-key="t-apps">Apps</li>
-
+                       
                             <li>
-                                <a href="{% url 'mainapp:index' %}" class="has-arrow">
+                                <a href="{% url 'mainapp:all_complains' %}" class="has-arrow">
                                     <i data-feather="users"></i>
-                                    <span data-key="t-ecommerce">Submit Complain</span>
+                                    <span data-key="t-ecommerce">All Complain</span>
                                 </a>
                              
                             </li>
 
                             <li>
-                                <a href="{% url 'mainapp:previous' %}">
+                                <a href="{% url 'mainapp:reviewed_complaints' %}">
                                     <i data-feather="users"></i>
-                                    <span data-key="t-chat">Previous Complains</span>
+                                    <span data-key="t-chat">Reviewed Complains</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{% url  'mainapp:follow_up' %}" class="has-arrow">
+                                <a href="{% url  'mainapp:follow_ups_committee' %}" class="has-arrow">
                                     <i data-feather="mail"></i>
                                     <span data-key="t-email">Follow Ups</span>
                                 </a>

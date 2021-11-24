@@ -1,10 +1,6 @@
 <!doctype html>
 <html lang="en">
 {% include './home_student_files/head.html' %}
-<!doctype html>
-<html lang="en">
-
-{% include './home_student_files/head.html' %}
  </head>
 
     <body data-topbar="dark">
@@ -12,7 +8,19 @@
         <div id="layout-wrapper">
         {% include './home_student_files/header.html' %}
         {% include './home_commitee/left_sidebar.html' %}
-        {% include './home_commitee/main_committee.html' %}
+        <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                    {% include './complaint_detailed/page_title.html' %}
+                    {% include './comp_detailed/mali.html' %}
+
+
+
+                    </div>
+                </div>
+        </div>
         </div>
         {% include './home_student_files/right_sidebar.html' %}
         {% include './home_student_files/js.html' %}

@@ -2,8 +2,8 @@ from django.shortcuts import redirect, render
 from authentification.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import ComplainForm
-from .models import ComplaintsDetails
-from django.db import IntegrityError
+from .models import ComplaintsDetails, FollowUpEmailss
+from django.db import IntegrityError, models
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
@@ -172,12 +172,28 @@ def home_student(request):
 
 @login_required(login_url="authentification:login")
 def home_committee(request):
-    return render(request,'home_commitee.html')
+    user_id =  request.user.id
+    user_obj = User.objects.get(id=user_id)
+    total_complaints = ComplaintsDetails.objects.filter(department= user_obj.department).count()
+    total_responded = ComplaintsDetails.objects.filter(department= user_obj.department,reviewed=True).count()
+    follow_ups =  FollowUpEmailss.objects.filter(to_email = user_obj.email).count()
+    flow = FollowUpEmailss.objects.filter(user_id = user_obj).count()
+    total_unresponded =  total_complaints - total_responded
+    total_follow_up = follow_ups + flow
+    context = {
+        'total_complaints':total_complaints,
+        'total_responded' : total_responded,
+        'total_unresponded' :total_unresponded,
+        'total_follow_up' : total_follow_up
+    }
+    return render(request,'home_commitee.html',context)
 
 
 @login_required(login_url="authentification:login")
 def previous_complaints(request):
-    all_complaints = ComplaintsDetails.objects.all()
+    user_id =  request.user.id
+    user_obj = User.objects.get(id=user_id)
+    all_complaints = ComplaintsDetails.objects.filter(user_id =  user_obj)
     context = {
        'all_complaints':all_complaints
     }
@@ -236,7 +252,220 @@ def delete_complaint(request):
 
 @login_required(login_url="authentification:login")
 def follow_ups(request):
-    return render(request,'follow_up.html')
+    user_id =  request.user.id
+    user =  request.user
+    user_obj = User.objects.get(id=user_id)
+    follow_ups =  FollowUpEmailss.objects.filter(user_id = user_obj)
+    all_users =  User.objects.filter(type = 'Committee')
+
+    context  ={ 
+        'follow_up' :  follow_ups,
+        'all_users' :  all_users
+    }
+    if request.method == "POST":
+        to_mail =  request.POST.get('to')
+        subject =  request.POST.get('subject')
+        message =  request.POST.get('message')
+        FollowUpEmailss.objects.create(user_id = user_obj,
+                    to_email = to_mail,
+                    subject  =  subject,
+                    message =  message
+        )
+        email_subject = subject
+        message = render_to_string('mail_submitted.html', {
+        'user': user,
+         'message': message 
+ 
+        })
+        to_email = to_mail
+        email = EmailMessage(email_subject, message, to=[to_email,user_obj.email])
+        email.send()
+        return redirect('mainapp:follow_up')
+        
+
+
+    return render(request,'follow_up.html',context)
+
+
+@login_required(login_url="authentification:login")
+def email_details(request,id):
+    prop =  FollowUpEmailss.objects.get(id= id)
+    user_to =  User.objects.get(email =  prop.to_email)
+    user_id =  request.user.id
+    user =  request.user
+    user_obj = User.objects.get(id=user_id)
+    follow_ups =  FollowUpEmailss.objects.filter(user_id = user_obj)
+    all_users =  User.objects.filter(type = 'Committee')
+
+    context  ={ 
+        'follow_up' :  follow_ups,
+        'all_users' :  all_users,
+        'props': prop,
+        'user_to' :  user_to
+    }
+    if request.method == "POST":
+        to_mail =  request.POST.get('to')
+        subject =  request.POST.get('subject')
+        message =  request.POST.get('message')
+        FollowUpEmailss.objects.create(user_id = user_obj,
+                    to_email = to_mail,
+                    subject  =  subject,
+                    message =  message
+        )
+        email_subject = subject
+        message = render_to_string('mail_submitted.html', {
+        'user': user,
+         'message': message 
+ 
+        })
+        to_email = to_mail
+        email = EmailMessage(email_subject, message, to=[to_email,user_obj.email])
+        email.send()
+        return redirect('mainapp:follow_up')
+        
+
+    return render(request,'mail_details.html',context)
+
+
+@login_required(login_url="authentification:login")
+def all_complaints(request):
+    user_id =  request.user.id
+    user_obj = User.objects.get(id=user_id)
+    all_complaints = ComplaintsDetails.objects.filter(department = user_obj.department)
+    context = {
+       'all_complaints':all_complaints
+    }
+    return render(request,'all_complains.html',context)
+
+
+@login_required(login_url="authentification:login")
+def comp_detailed(request,id):
+    prop =  ComplaintsDetails.objects.get(id= id)
+
+    context = {
+        'props':prop
+    }
+    
+    return render(request,'comp_detailed.html',context)
+
+
+
+@login_required(login_url="authentification:login")
+def review_edit(request,id):
+    prop =  ComplaintsDetails.objects.get(id= id)
+    context = {
+        'props':prop
+    }
+    if request.method == "POST":
+        prop2 =  ComplaintsDetails.objects.get(id= id)
+        review =  request.POST.get('review')
+        if review == 'on':
+             prop2.reviewed =  True
+             prop2.save()
+             return redirect('mainapp:all_complains')
+        else:
+            prop2.reviewed =  False
+            prop2.save()
+            return redirect('mainapp:all_complains')
+
+    return render(request,'review_edit.html',context)
+
+
+@login_required(login_url="authentification:login")
+def reviewed_complaints(request):
+    user_id =  request.user.id
+    user_obj = User.objects.get(id=user_id)
+    all_complaints = ComplaintsDetails.objects.filter(department = user_obj.department,reviewed=True)
+    context = {
+       'all_complaints':all_complaints
+    }
+    return render(request,'all_complains.html',context)
+
+
+
+@login_required(login_url="authentification:login")
+def follow_ups_committee(request):
+    user_id =  request.user.id
+    user =  request.user
+    user_obj = User.objects.get(id=user_id)
+    follow_ups =  FollowUpEmailss.objects.filter(to_email = user_obj.email)
+    flow = FollowUpEmailss.objects.filter(user_id = user_obj)
+    all_users =  User.objects.filter()
+
+    context  ={ 
+        'follow_up' :  follow_ups,
+        'all_users' :  all_users,
+        'flow' : flow
+    }
+    if request.method == "POST":
+        to_mail =  request.POST.get('to')
+        subject =  request.POST.get('subject')
+        message =  request.POST.get('message')
+        FollowUpEmailss.objects.create(user_id = user_obj,
+                    to_email = to_mail,
+                    subject  =  subject,
+                    message =  message
+        )
+        email_subject = subject
+        message = render_to_string('mail_submitted.html', {
+        'user': user,
+         'message': message 
+ 
+        })
+        to_email = to_mail
+        email = EmailMessage(email_subject, message, to=[to_email,user_obj.email])
+        email.send()
+        return redirect('mainapp:follow_ups_committee')
+        
+
+
+    return render(request,'follow_up_commitee.html',context)
+
+
+
+@login_required(login_url="authentification:login")
+def email_details_committee(request,id):
+    prop =  FollowUpEmailss.objects.get(id= id)
+    user_to =  User.objects.get(email =  prop.to_email)
+    user_id =  request.user.id
+    user =  request.user
+    user_obj = User.objects.get(id=user_id)
+    follow_ups =  FollowUpEmailss.objects.filter(user_id = user_obj)
+    all_users =  User.objects.filter()
+
+    context  ={ 
+        'follow_up' :  follow_ups,
+        'all_users' :  all_users,
+        'props': prop,
+        'user_to' :  user_to
+    }
+    if request.method == "POST":
+        to_mail =  request.POST.get('to')
+        subject =  request.POST.get('subject')
+        message =  request.POST.get('message')
+        FollowUpEmailss.objects.create(user_id = user_obj,
+                    to_email = to_mail,
+                    subject  =  subject,
+                    message =  message
+        )
+        email_subject = subject
+        message = render_to_string('mail_submitted.html', {
+        'user': user,
+         'message': message 
+ 
+        })
+        to_email = to_mail
+        email = EmailMessage(email_subject, message, to=[to_email,user_obj.email])
+        email.send()
+        return redirect('mainapp:follow_ups_committee')
+        
+
+    return render(request,'mail_details_committee.html',context)
+
+
+
+
+
 
 
 

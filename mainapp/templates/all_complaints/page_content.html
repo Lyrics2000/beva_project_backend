@@ -45,6 +45,7 @@
                                                         <th>Reg No</th>
                                                         <th>Department</th>
                                                         <th>Status</th>
+                                                        
                                                        
                                                     </tr>
                                                 </thead>
@@ -59,7 +60,7 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <a href="{{all.get_absolute_url}}">{{all.name}}</a>
+                                                            <a href="{{all.get_absolute_url_committee}}">{{all.name}}</a>
 
 
                                                         </td>
@@ -70,8 +71,10 @@
                                                         <td>{{all.university}}</td>
                                                         <td>{{all.course}}</td>
                                                         <td>{{all.reg_no}}</td>
+
+
                                                         <td>{{all.department}}</td>
-                                          <td>
+                                                        <td>
 
 
                                                         {% if all.submitted == True %}
@@ -87,7 +90,6 @@
 
                                                         {% endif %}
                                                         </td>
-                                                        
                                                         
                                                     </tr>
 

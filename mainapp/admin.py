@@ -4,7 +4,8 @@ from .models import (
     Inqury,
     Feedback,
     Response,
-    ComplaintsDetails
+    ComplaintsDetails,
+    FollowUpEmailss
 )
 
 # Register your models here.
@@ -12,3 +13,4 @@ admin.site.register(Inqury)
 admin.site.register(Feedback)
 admin.site.register(Response)
 admin.site.register(ComplaintsDetails)
+admin.site.register(FollowUpEmailss)

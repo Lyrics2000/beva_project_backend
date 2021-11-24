@@ -7,7 +7,14 @@ previous_complaints,
 complaints_detailed,
 delete_complaint,
 complaints_edit,
-follow_ups)
+follow_ups,
+email_details,
+all_complaints,
+comp_detailed,
+review_edit,
+reviewed_complaints,
+follow_ups_committee,
+email_details_committee)
 app_name = "mainapp"
 urlpatterns = [
     path('', index,name="index"),
@@ -22,6 +29,13 @@ urlpatterns = [
     path('complaints_detailed/<id>',complaints_detailed,name="post_detailed"),
     path('delete_complaint/',delete_complaint,name="delete_complain"),
     path('complaints_edit/<id>',complaints_edit,name="post_edit"),
-    path('follow_up/',follow_ups,name="follow_up")
-    
+    path('follow_up/',follow_ups,name="follow_up"),
+    path('email_details/<id>',email_details,name="email_details"),
+    path('all_complains/',all_complaints,name="all_complains"),
+    path('comp_detailed/<id>',comp_detailed,name="comp_detailed"),
+    path('review_edit/<id>',review_edit,name="review_edit"),
+    path('reviewed_complaints/',reviewed_complaints,name="reviewed_complaints"),
+    path('follow_up_committee/',follow_ups_committee,name="follow_ups_committee"),
+    path('email_details_committee/<id>',email_details_committee,name="email_details_committee"),
+
 ]
