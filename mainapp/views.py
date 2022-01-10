@@ -160,6 +160,7 @@ def confirmer(request):
 def home_student(request):
     user_id =  request.user.id
     user_obj = User.objects.get(id=user_id)
+    all_complains = ComplaintsDetails.objects.filter(user_id= user_obj)
     total_complaints = ComplaintsDetails.objects.filter(user_id= user_obj).count()
     total_responded = ComplaintsDetails.objects.filter(user_id= user_obj,reviewed=True).count()
     total_unresponded =  total_complaints - total_responded
@@ -168,7 +169,8 @@ def home_student(request):
         'total_complaints':total_complaints,
         'total_responded' : total_responded,
         'total_unresponded' :total_unresponded,
-        'total_follow_up' : follow_ups
+        'total_follow_up' : follow_ups,
+        'all_complains':all_complains
     }
     return render(request,'home_student.html',context)
 

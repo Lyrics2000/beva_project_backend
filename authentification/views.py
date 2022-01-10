@@ -8,6 +8,7 @@ from .forms import SignINForm,SignUpForm
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
 from authentification.models import User
+from django.contrib.auth import logout
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
@@ -18,6 +19,10 @@ from django.core.mail import EmailMessage
 from django.http import HttpResponse
 
 # Create your views here.
+
+def logout_user(request):
+    logout(request)
+    return redirect("authentification:login")
 
 
 
